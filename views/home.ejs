@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F0EDE5; /* Nude color for the background */
+            color: #3D3B35; /* Darker color for text */
+            position: relative; /* Add relative positioning to body */
+        }
+
+        nav {
+            background-color: #f2e9d0; /* Nude color for the background */
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #7E7A73; /* Nude color for the text */
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #3D3B35; /* Darker color on hover */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .container img {
+            width: 250px; /* Adjust the width of the image */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 20px; /* Add some space below the image */
+        }
+
+        h1 {
+            font-size: 65px;
+            margin-bottom: 50px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px; /* Reduce margin-bottom */
+        }
+
+        .cta-button {
+            background-color: #eaea8f; /* Pastel pink color for button */
+            color: #3D3B35; /* Darker color for button text */
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin: 0 10px; /* Add margin between buttons */
+        }
+
+        .cta-button:hover {
+            background-color: #e2b0b8; /* Lighter shade on hover */
+        }
+
+        footer {
+            background-color: #F0EDE5;
+            padding: 100px;
+        }
+
+        .moving-image {
+            position: fixed;
+            width: 150px;
+            height: auto;
+            bottom: 0; /* Position at the bottom of the screen */
+            right: 0; /* Start position at the left edge */
+            animation: moveImage 5s linear infinite; /* Animation properties */
+        }
+
+        @keyframes moveImage {
+            0% {
+                right: 0; /* Starting position */
+            }
+            100% {
+                right: calc(100% - 50px); /* Ending position */
+            }
+        }
+
+        /* Make the text in the first list item bold */
+        nav ul li:nth-child(1) a {
+            font-weight: bold;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <% homedata.navLinks.forEach(link => { %>
+                <li><a href="<%= link.href %>" class="<%= link.animation %>"><%= link.text %></a></li>
+            <% }); %>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <img src="<%= homedata.mainImage %>" alt="Happy Cat Image">
+        <h1 class="animate__animated animate__jackInTheBox"><%= homedata.pageTitle %></h1>
+        <div>
+            <!-- Use homedata.ctaLinks for call-to-action links -->
+            <% homedata.ctaLinks.forEach(link => { %>
+                <a href="<%= link.href %>" class="cta-button"><%= link.text %></a>
+            <% }); %>
+        </div>
+    </div>
+    
+    <img src="<%= homedata.movingImage %>" alt="Moving Image" class="moving-image">
+
+</body>
+
+</html>
